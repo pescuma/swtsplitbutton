@@ -77,7 +77,7 @@ public class SplitButton extends Button {
                 e.gc.setBackground(COLOR__BLACK);
                 e.gc.fillPolygon(new int[] {e.x + e.width-15, e.y + e.height/2-2, 
                 		e.x + e.width-8, e.y + e.height/2-2, 
-                		e.x + e.width-12, e.y + e.height/2-6}); 
+                		e.x + e.width-12, e.y + e.height/2+2}); 
                 
                 e.gc.setForeground(oldForeground);
                 e.gc.setBackground(oldBackground);
@@ -116,7 +116,7 @@ public class SplitButton extends Button {
         return x>=x1 && y>=y1 && x<=x2 && y<=y2;
     }
     
-    public void addSelectionListener(SplitButtonSelectionListener listener) {
+    public void addSplitButtonSelectionListener(SplitButtonSelectionListener listener) {
         listeners.add(listener);
     }
 
