@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="c:/SWTSplitButton-1.0-source.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/SplitButton/sourceExport.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <selectedElements exportClassFiles="false" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=SplitButton/src&lt;de.ikoffice.widgets{SplitButtonSelectionListener.java"/>
+        <javaElement handleIdentifier="=SplitButton/src&lt;de.ikoffice.util{FontsUtils.java"/>
+        <javaElement handleIdentifier="=SplitButton/src&lt;de.ikoffice.example{SplitButtonExample.java"/>
+        <javaElement handleIdentifier="=SplitButton/src&lt;de.ikoffice.widgets{SplitButton.java"/>
+    </selectedElements>
+</jardesc>
