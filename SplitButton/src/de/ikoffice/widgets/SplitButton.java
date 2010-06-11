@@ -54,33 +54,35 @@ public class SplitButton extends Button {
             public void paintControl(PaintEvent e) {
                 // draw the split line and arrow
             	
+            	Rectangle rect = getBounds();
+//               System.out.println("Rect width " + rect.width + " event width " + e.width);
+//               System.out.println("Rect height " + rect.height + " event height " + e.height);
             	Color oldForeground = e.gc.getForeground();
-                Color oldBackground = e.gc.getBackground();
-                
-                x1 = e.x + e.width-20;
-                y1 = e.y+4;
-                x2 = e.x + e.width;
-                y2 = e.y + e.height;
-                
-                
-                e.gc.setForeground(COLOR_WIDGET_NORMAL_SHADOW);
-                e.gc.setBackground(COLOR_WIDGET_NORMAL_SHADOW);
-                e.gc.setLineWidth(1);
-                e.gc.drawLine(e.x + e.width-20, e.y+6, e.x + e.width -20, e.y + e.height-6);
-                
-                e.gc.setForeground(COLOR_WIDGET_HIGHLIGHT_SHADOW);
-                e.gc.setBackground(COLOR_WIDGET_HIGHLIGHT_SHADOW);
-                e.gc.setLineWidth(1);
-                e.gc.drawLine(e.x + e.width-19, e.y+6, e.x + e.width -19, e.y + e.height-6);
+            	Color oldBackground = e.gc.getBackground();
+            	x1 = e.x + rect.width-20;
+            	y1 = e.y;
+            	x2 = e.x + rect.width;
+            	y2 = e.y + rect.height;
+            	e.gc.setClipping(e.x, e.y, e.width, e.height);
+               
+            	e.gc.setForeground(COLOR_WIDGET_NORMAL_SHADOW);
+            	e.gc.setBackground(COLOR_WIDGET_NORMAL_SHADOW);
+            	e.gc.setLineWidth(1);
+            	e.gc.drawLine(e.x + rect.width-20, e.y+6, e.x + rect.width -20, e.y + rect.height-6);
+               
+            	e.gc.setForeground(COLOR_WIDGET_HIGHLIGHT_SHADOW);
+            	e.gc.setBackground(COLOR_WIDGET_HIGHLIGHT_SHADOW);
+            	e.gc.setLineWidth(1);
+            	e.gc.drawLine(e.x + rect.width-19, e.y+6, e.x + rect.width -19, e.y + rect.height-6);
 
-                e.gc.setForeground(COLOR__BLACK);
-                e.gc.setBackground(COLOR__BLACK);
-                e.gc.fillPolygon(new int[] {e.x + e.width-15, e.y + e.height/2-2, 
-                		e.x + e.width-8, e.y + e.height/2-2, 
-                		e.x + e.width-12, e.y + e.height/2+2}); 
-                
-                e.gc.setForeground(oldForeground);
-                e.gc.setBackground(oldBackground);
+            	e.gc.setForeground(COLOR__BLACK);
+            	e.gc.setBackground(COLOR__BLACK);
+            	e.gc.fillPolygon(new int[] {e.x + rect.width-15, e.y + rect.height/2-2, 
+                       e.x + rect.width-8, e.y + rect.height/2-2, 
+                       e.x + rect.width-12, e.y + rect.height/2+2}); 
+               
+            	e.gc.setForeground(oldForeground);
+            	e.gc.setBackground(oldBackground);
                 
 //                e.gc.drawImage(ARROW_DOWN, e.x + e.width-15, e.y + e.height/2-2);  
             }
