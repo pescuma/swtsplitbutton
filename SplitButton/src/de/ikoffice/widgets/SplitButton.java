@@ -77,9 +77,9 @@ public class SplitButton extends Button {
 
             	e.gc.setForeground(COLOR__BLACK);
             	e.gc.setBackground(COLOR__BLACK);
-            	e.gc.fillPolygon(new int[] {e.x + rect.width-15, e.y + rect.height/2-2, 
-                       e.x + rect.width-8, e.y + rect.height/2-2, 
-                       e.x + rect.width-12, e.y + rect.height/2+2}); 
+            	e.gc.fillPolygon(new int[] {e.x + rect.width-15, e.y + rect.height/2-1, 
+                       e.x + rect.width-8, e.y + rect.height/2-1, 
+                       e.x + rect.width-12, e.y + rect.height/2+3}); 
                
             	e.gc.setForeground(oldForeground);
             	e.gc.setBackground(oldBackground);
