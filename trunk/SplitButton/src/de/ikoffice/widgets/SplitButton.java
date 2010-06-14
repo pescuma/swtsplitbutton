@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
@@ -48,6 +50,18 @@ public class SplitButton extends Button {
     public SplitButton(Composite parent, int style) {
         super(parent, SWT.PUSH);
         setText("");
+        super.addControlListener(new ControlListener() {
+            
+            @Override
+            public void controlResized(ControlEvent e) {
+                
+            }
+            
+            @Override
+            public void controlMoved(ControlEvent e) {
+                redraw();
+            }
+        });
         super.addPaintListener(new PaintListener() {
             
             @Override
