@@ -9,8 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
@@ -38,6 +36,7 @@ public class SplitButton extends Button {
     private final static Color COLOR_WIDGET_NORMAL_SHADOW = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW);
     private final static Color COLOR_WIDGET_HIGHLIGHT_SHADOW = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_HIGHLIGHT_SHADOW);
     private final static Color COLOR__BLACK = Display.getDefault().getSystemColor(SWT.COLOR_BLACK);
+    private final static int TIMER = 200;
     
     private List<SplitButtonSelectionListener> listeners = new LinkedList<SplitButtonSelectionListener>();
     
@@ -50,18 +49,6 @@ public class SplitButton extends Button {
     public SplitButton(Composite parent, int style) {
         super(parent, SWT.PUSH);
         setText("");
-        super.addControlListener(new ControlListener() {
-            
-            @Override
-            public void controlResized(ControlEvent e) {
-                
-            }
-            
-            @Override
-            public void controlMoved(ControlEvent e) {
-                redraw();
-            }
-        });
         super.addPaintListener(new PaintListener() {
             
             @Override
@@ -125,7 +112,18 @@ public class SplitButton extends Button {
                 }
             }
         });
-        menu = new Menu (getShell(), SWT.POP_UP);;
+        menu = new Menu (getShell(), SWT.POP_UP);
+        
+        Runnable timer = new Runnable () {
+    		public void run () {
+    			if (isDisposed()) return;
+    			redraw();
+    			getDisplay().timerExec (TIMER, this);
+    		}
+    	};
+    	
+    	getDisplay().timerExec(TIMER, timer);
+
     }
     
     private boolean isShowMenu(int x, int y) {
