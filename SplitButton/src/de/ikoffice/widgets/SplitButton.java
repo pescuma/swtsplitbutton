@@ -36,7 +36,6 @@ public class SplitButton extends Button {
     private final static Color COLOR_WIDGET_NORMAL_SHADOW = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW);
     private final static Color COLOR_WIDGET_HIGHLIGHT_SHADOW = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_HIGHLIGHT_SHADOW);
     private final static Color COLOR__BLACK = Display.getDefault().getSystemColor(SWT.COLOR_BLACK);
-    private final static int TIMER = 200;
     
     private List<SplitButtonSelectionListener> listeners = new LinkedList<SplitButtonSelectionListener>();
     
@@ -64,23 +63,26 @@ public class SplitButton extends Button {
             	y1 = e.y;
             	x2 = e.x + rect.width;
             	y2 = e.y + rect.height;
-            	e.gc.setClipping(e.x, e.y, e.width, e.height);
+//            	e.gc.setClipping(e.x, e.y, e.width, e.height);
+            	int dx = -e.gc.getClipping().x;
+                int dy = -e.gc.getClipping().y;
                
             	e.gc.setForeground(COLOR_WIDGET_NORMAL_SHADOW);
             	e.gc.setBackground(COLOR_WIDGET_NORMAL_SHADOW);
             	e.gc.setLineWidth(1);
-            	e.gc.drawLine(e.x + rect.width-20, e.y+6, e.x + rect.width -20, e.y + rect.height-6);
+            	 e.gc.drawLine(e.x + rect.width-20 + dx, e.y+6+dy, e.x + rect.width -20+ dx, e.y + rect.height-6+dy);
                
             	e.gc.setForeground(COLOR_WIDGET_HIGHLIGHT_SHADOW);
             	e.gc.setBackground(COLOR_WIDGET_HIGHLIGHT_SHADOW);
             	e.gc.setLineWidth(1);
-            	e.gc.drawLine(e.x + rect.width-19, e.y+6, e.x + rect.width -19, e.y + rect.height-6);
+                e.gc.drawLine(e.x + rect.width-19 + dx, e.y+6+dy, e.x + rect.width -19+ dx, e.y + rect.height-6+dy);
 
             	e.gc.setForeground(COLOR__BLACK);
             	e.gc.setBackground(COLOR__BLACK);
-            	e.gc.fillPolygon(new int[] {e.x + rect.width-15, e.y + rect.height/2-1, 
-                       e.x + rect.width-8, e.y + rect.height/2-1, 
-                       e.x + rect.width-12, e.y + rect.height/2+3}); 
+            	e.gc.fillPolygon(new int[] {
+                        e.x + rect.width-15+ dx, e.y + rect.height/2-1+dy, 
+                        e.x + rect.width-8+ dx, e.y + rect.height/2-1+dy, 
+                        e.x + rect.width-12+ dx, e.y + rect.height/2+3+dy}); 
                
             	e.gc.setForeground(oldForeground);
             	e.gc.setBackground(oldBackground);
@@ -113,16 +115,6 @@ public class SplitButton extends Button {
             }
         });
         menu = new Menu (getShell(), SWT.POP_UP);
-        
-        Runnable timer = new Runnable () {
-    		public void run () {
-    			if (isDisposed()) return;
-    			redraw();
-    			getDisplay().timerExec (TIMER, this);
-    		}
-    	};
-    	
-    	getDisplay().timerExec(TIMER, timer);
 
     }
     
